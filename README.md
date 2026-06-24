@@ -1,6 +1,9 @@
 # RStataLink2
 
-`RStataLink2` is an experimental successor to [`RStataLink`](https://github.com/alekrutkowski/RStataLink). It keeps the same exported R function names, but replaces the disk-polling internals with a persistent Stata server, an [NNG](https://nng.nanomsg.org/) socket connection, and a Stata C plugin.
+**`RStataLink2` is an experimental successor to [`RStataLink`](https://github.com/alekrutkowski/RStataLink): an [R](https://www.r-project.org/) package for calling [Stata](https://www.stata.com/) from R interactively, but efficiently.** It keeps the same exported R function names, but replaces the disk-polling internals with a persistent Stata server, an [NNG](https://nng.nanomsg.org/) socket connection, and a [Stata C plugin](https://www.stata.com/plugins/).
+
+> [!TIP]
+> For the reverse usage, Stata calling R interactively and efficiently, see https://github.com/alekrutkowski/StataRLink and https://github.com/alekrutkowski/stata-rbridge
 
 The public API is intentionally familiar:
 
@@ -25,7 +28,7 @@ The package is still experimental, but has gone through basic tests and seems to
 
 ## Installation
 
-Install/compile from source:
+### Install/compile from source:
 
 ```r
 # Requires Rtools on Windows:
@@ -40,12 +43,15 @@ Source installation builds the Stata plugin automatically. During installation, 
 4. compiles `inst/stata-plugin/rslng_plugin.c` into `rslng__plugin.plugin`;
 5. installs the ado file and compiled plugin under the installed R package directory.
 
-Install the compiled Windows (x86_64) package:
+### Install the compiled Windows (x86_64) package:
+
 - Go to https://github.com/alekrutkowski/RStataLink2/releases
-- Download `RStataLink2_0.0.15.9000.zip`
+- Download `RStataLink2_0.0.16.9000.zip`
 - run in R `install.packages(file.choose(), repos=NULL)` and selecte the just downloaded file.
 
-Binary package installation does not compile anything so it doesn't need Rtools on Windows. A binary package already contains:
+Binary package installation does not compile anything so it doesn't need Rtools on Windows.
+
+A binary package already contains:
 
 ```text
 stata/rslng.ado
