@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+# Build the Stata plugin during source-package installation. Binary package
+# installation does not run this script; it simply installs the already-built
+# plugin produced during binary-package creation.
+
+RSL2_WINDOWS=0
+export RSL2_WINDOWS
+
+SCRIPT_DIR="`pwd`/inst/stata-plugin"
+"${SCRIPT_DIR}/configure-plugin.sh"

@@ -1,0 +1,24 @@
+# Build the RStataLink2 Stata plugin on Windows with Rtools/MinGW.
+# This Makefile is normally called by ../../configure.win during R package
+# source installation. It can also be run manually from this directory.
+
+CC ?= gcc
+CFLAGS ?= -O2 -std=c11
+CPPFLAGS ?=
+NNG_PREFIX ?= /ucrt64
+NNG_CFLAGS ?= -I$(NNG_PREFIX)/include
+NNG_LIBS ?= -L$(NNG_PREFIX)/lib -lnng -lws2_32 -lmswsock -liphlpapi -lbcrypt -ladvapi32
+TARGET ?= rslng__plugin.plugin
+
+.PHONY: all clean fetch-spi
+
+all: $(TARGET)
+
+fetch-spi:
+	Rscript fetch-stata-spi.R .
+
+$(TARGET): stplugin.c stplugin.h rslng_plugin.c
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(NNG_CFLAGS) -DSYSTEM=STWIN32 -shared stplugin.c rslng_plugin.c -o $@ $(NNG_LIBS)
+
+clean:
+	rm -f $(TARGET) *.o

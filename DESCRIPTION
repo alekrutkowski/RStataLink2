@@ -1,0 +1,22 @@
+Package: RStataLink2
+Title: NNG-Backed R and Stata Link with RStataLink-Compatible API
+Version: 0.0.16.9000
+Authors@R: c(
+    person("Alek", "Rutkowski", email = "alek.rutkowski@gmail.com", role = c("aut", "cre"))
+  )
+Description: Experimental successor to 'RStataLink' using a persistent Stata server, a Stata C plugin linked to 'libnng', and an R client using 'nanonext'. The exported R API mirrors 'RStataLink' while the internal communication machinery uses diskless NNG pair-socket messages and binary data-frame transfer.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Depends: R (>= 4.1)
+Imports:
+    foreign,
+    nanonext,
+    utils
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+URL: https://github.com/alekrutkowski/RStataLink2
+BugReports: https://github.com/alekrutkowski/RStataLink2/issues
+SystemRequirements: Stata with plugin support; Rtools on Windows for source installation; libnng development files or cmake plus internet access for automatic bundled NNG build. Uses NNG 1.11 by default when building bundled NNG; explicitly registers NNG transports inside the Stata plugin for static-link builds.
